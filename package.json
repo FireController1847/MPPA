@@ -1,0 +1,23 @@
+{
+  "name": "mppa",
+  "version": "1.0.0",
+  "description": "The Multiplayer Piano Application is based on the core concept of a website called [Multiplayer Piano](http://www.multiplayerpiano.com/) which is still used today as a wonderful place to learn JavaScript and how to find things on your own with on documentation. I made this application to get experience with Electron, but I plan on having a lot more fun with it in the future.",
+  "main": "./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FireController1847/MPPA.git"
+  },
+  "author": "FireController#1847",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FireController1847/MPPA/issues"
+  },
+  "homepage": "https://github.com/FireController1847/MPPA#readme",
+  "devDependencies": {
+    "electron": "^1.7.9"
+  }
+}
