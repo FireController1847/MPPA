@@ -1,0 +1,2 @@
+# MPPA
+The Multiplayer Piano Application is based on the core concept of a website called [Multiplayer Piano](http://www.multiplayerpiano.com/) which is still used today as a wonderful place to learn JavaScript and how to find things on your own with on documentation. I made this application to get experience with Electron, but I plan on having a lot more fun with it in the future.
