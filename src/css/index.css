@@ -1,0 +1,171 @@
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+  background-color: #F5F5F6;
+  overflow: hidden;
+  z-index: -50;
+}
+
+#head {
+  min-height: 16px;
+  background-color: #484848;
+  z-index: 5;
+}
+
+#menu {
+  padding: 12.5px 15px;
+}
+
+.mdc-persistent-drawer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 128px;
+}
+
+#sidebar {
+  position: absolute;
+  top: 49px;
+  bottom: 0;
+  overflow-y: scroll;
+  z-index: 5;
+}
+
+#roomlist > li > div {
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#roomlist > li > span {
+  position: absolute;
+  text-align: center;
+  right: 15px;
+  margin-right: 0px;
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+
+#roomlist > li > span > i {
+  position: absolute;
+  left: -2.5px;
+  top: -3.5px;
+  z-index: -5;
+  font-size: 35px;
+  color: #FFD800;
+}
+
+.content {
+  position: absolute;
+  top: 49px;
+  bottom: 79px;
+  right: 0;
+  left: 0;
+}
+
+#users {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+#users > ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+}
+
+#users > ul > li {
+  background-color: red;
+  position: relative;
+  display: inline-block;
+  padding: 5px;
+  margin: 0px 5px 5px 0px;
+  border-radius: 1px;
+  z-index: 4;
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
+
+}
+
+#chat {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+#chat > ul {
+  position: absolute;
+  padding: 0;
+  list-style: none;
+  bottom: 0;
+  right: 0;
+  left: 5px;
+  color: white;
+}
+
+#chat > ul > li:last-child {
+  margin-bottom: 0px;
+}
+
+#chat > ul > li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#chat > ul > li > #author {
+  float: left;
+  margin: 0px;
+  margin-right: 5px;
+  padding: 2.5px 5px;
+  background-color: #c11e1e;
+  border-radius: 15px;
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#chat > ul > li> #content {
+  padding-top: 2.5px;
+  color: black;
+  white-space: nowrap;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 79px;
+}
+
+#controls {
+  position: absolute;
+  bottom: 4px;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #212121;
+}
+
+#nlimit {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: #FDDE3D;
+}
