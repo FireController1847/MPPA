@@ -15,7 +15,35 @@ window.onload = () => {
     }
   });
   client.on('a', a => {
+    if (chat.isOpen) {
+      chat.recieve(a, false);
+      return chat.scrollToBottom();
+    }
     chat.recieve(a);
+  });
+  $("#chat > input").on("focus", () => {
+    chat.focus();
+  });
+  $(document).on("mousedown", e => {
+    if (!$("#chat").has(e.target).length > 0) {
+      chat.unfocus();
+    }
+  });
+  $(document).on("keydown", e => {
+    if (e.which == 27 && chat.isOpen) {
+      chat.unfocus();
+    }
+  });
+  $(document).on("keypress", e => {
+    if (e.which == 13 && chat.isOpen) {
+      client.sendMessage($("#chat > input").val());
+      $("#chat > input").val("");
+      chat.unfocus();
+      $("#chat > input").blur();
+    } else if (e.which == 13) {
+      chat.focus();
+      $("#chat > input").focus();
+    }
   });
 
   // UserList
@@ -66,6 +94,7 @@ window.onload = () => {
     }
   });
 
+  // On Ready
   client.on('ready', () => {
     chat.recieve({'p': {
       color: '#6BA5E9',
@@ -79,5 +108,5 @@ window.onload = () => {
   };
 
   // Quickfix for bug with chat
-  setTimeout(() => {chat.check()}, 2000);
+  setTimeout(() => { if (!chat.isOpen) chat.hide(); }, 2000);
 };
