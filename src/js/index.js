@@ -48,7 +48,15 @@ window.onload = () => {
 
   // UserList
   const ul = new (require('../js/mpp/UserList.js'))(client);
-  client.on("participant added", ul.recieve);
+  client.on("participant added", p => {
+    ul.recieve(p);
+  });
+  client.on("participant removed", p => {
+    ul.remove(p);
+  });
+  client.on("participant update", p => {
+    ul.update(p);
+  });
 
   // Rooms
   const rlist = new (require("@material/drawer/dist/mdc.drawer"))["MDCPersistentDrawer"]($(".mdc-persistent-drawer")[0]);
@@ -61,7 +69,7 @@ window.onload = () => {
   });
   $("#roomlist").on("click", "> *", e => {
     client.switch($(e.target).attr("roomname"));
-    ul.clear();
+    // ul.clear();
     rlist.open = !rlist.open;
   });
   client.on('ls', ls => {
