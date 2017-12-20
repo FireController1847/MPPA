@@ -22,6 +22,7 @@ window.onload = () => {
     chat.recieve(a);
   });
   $("#chat > input").on("focus", () => {
+    if (rlist && rlist.open) return;
     chat.focus();
   });
   $(document).on("mousedown", e => {

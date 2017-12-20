@@ -56,7 +56,8 @@ module.exports = class Chat {
   }
 
   focus() {
-    $("#chat > ul").addClass("focus");
+    const el = $("#chat > ul");
+    el.addClass("focus");
     const msgs = $("#chat > ul > li").get();
     for (let i = 1; i <= 50 && i <= msgs.length; i++) {
       $(msgs[msgs.length - i]).css("opacity", "");
@@ -67,7 +68,9 @@ module.exports = class Chat {
   }
 
   unfocus() {
-    $("#chat > ul").removeClass("focus");
+    const el = $("#chat > ul");
+    el.css("top", "");
+    el.removeClass("focus");
     this.hide();
     this.isOpen = false;
   }
