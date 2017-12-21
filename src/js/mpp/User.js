@@ -1,32 +1,37 @@
-const Client = require('./src/Client.js');
+const Client = require("./src/Client.js");
 
 module.exports = class User extends Client {
-  constructor(uri, proxy) {
-    super(uri || 'ws://www.multiplayerpiano.com/', proxy);
+  constructor(options) {
+    super(options);
+    if (!options) options = {};
+    this.name = options.name || "Anonymous";
+    this.on("ready", () => {
+      this.setUsername(this.name);
+    });
+    this.setChannel(options.channel || "lobby");
+    this.checkChannel = setInterval(() => {
+      if (!this.channel || this.channel._id != options.channel || "lobby") 
+        this.setChannel(options.channel || "lobby");
+    }, 15000);
   }
 
-  switch(name, settings) {
-    if (this.channel && this.channel._id === name) return this;
-    this.setChannel(name || "lobby", settings);
-  }
-
-  sendMessage(message) {
-    this.sendArray([{
-      m: 'a',
-      message: message
-    }]);
-  }
-
+  // Setters
   setUsername(name) {
-    this.sendArray([{
-      m: 'userset', 
-      set: {'name': name}
-    }]);
+    this.sendArray([{m: "userset", set: {"name": name}}]);
+    localStorage.setItem("UN", name);
   }
 
+  // Utilities
+  sendMessage(msg) {
+    return this.sendArray([{m: "a", message: msg}]);
+  }
   press(note, vel, delay) {
     setTimeout(() => {
       this.startNote(note, vel);
     }, delay);
+  }
+  switch(name, settings) {
+    if (this.channel && this.channel._id === name) return this;
+    this.setChannel(name || "lobby", settings);
   }
 };

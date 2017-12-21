@@ -3,13 +3,19 @@ window.onload = () => {
   window.$ = $;
 
   // Create Client
-  const client = new (require('../js/mpp/User.js'))();
-  client.setChannel('lobby').start();
+  const client = new (require('../js/mpp/User.js'))({
+    "name": localStorage.getItem("UN") || null,
+    "channel": "lobby"
+  });
 
   // Chat
   const chat = new (require('../js/mpp/Chat.js'))(client);
   client.on('c', c => {
     chat.clear();
+    chat.recieve({'p': {
+      color: '#6BA5E9',
+      name: 'System'
+    }, a: 'Connected.'});
     for (let i = 0; i < c.c.length; i++) {
       chat.recieve(c.c[i], false);
     }
@@ -21,7 +27,7 @@ window.onload = () => {
     }
     chat.recieve(a);
   });
-  $("#chat > input").on("focus", () => {
+  $("#chat > input").on("click", () => {
     if (rlist && rlist.open) return;
     chat.focus();
   });
@@ -103,6 +109,7 @@ window.onload = () => {
     }
   });
 
+
   // On Ready
   client.on('ready', () => {
     chat.recieve({'p': {
@@ -110,6 +117,8 @@ window.onload = () => {
       name: 'System'
     }, a: 'Connected.'});
   });
+  
+  client.connect();
 
   window.MPPA = {
     "chat": chat,
