@@ -19,6 +19,7 @@
   "homepage": "https://github.com/FireController1847/MPPA#readme",
   "devDependencies": {
     "electron": "^1.7.9",
+    "electron-rebuild": "^1.6.0",
     "jquery": "^3.2.1"
   },
   "dependencies": {
