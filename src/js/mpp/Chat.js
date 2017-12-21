@@ -40,7 +40,7 @@ module.exports = class Chat {
   
   check() {
     const msgs = $("#chat > ul > li").get();
-    if (msgs.length > 256) {
+    if (msgs.length > 512) {
       $(msgs[0]).remove();
     }
   }
