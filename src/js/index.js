@@ -1,10 +1,14 @@
+const MDCDrawer = require("@material/drawer/dist/mdc.drawer.js").MDCDrawer;
+
+let rlistupdate = false;
+
 window.onload = () => {
   const $ = require("jquery-easing");
   window.$ = $;
 
   // Create Client
   const client = new (require('../js/mpp/User.js'))({
-    "name": localStorage.getItem("UN") || null,
+    "name": localStorage.getItem("UN") || "Anonimouse",
     "channel": "lobby"
   });
 
@@ -66,29 +70,38 @@ window.onload = () => {
   });
 
   // Rooms
-  const rlist = new (require("@material/drawer/dist/mdc.drawer"))["MDCPersistentDrawer"]($(".mdc-persistent-drawer")[0]);
+  console.log("DRAWER: ", document.querySelector(".mdc-drawer"));
+  const rlist = new MDCDrawer(document.querySelector(".mdc-drawer"));
+  // const rlist = new (require("@material/drawer"))["MDCDrawer"]($(".mdc-drawer")[0]);
   $("#menu").on("click", () => {
+    // rlistupdate = true;
     rlist.open = !rlist.open;
     if (rlist.open)
       client.sendArray([{m: "+ls"}]);
     else
       client.sendArray([{m: "-ls"}]);
   });
-  $("#roomlist").on("click", "> *", e => {
-    client.switch($(e.target).attr("roomname"));
+  $("#roomlist").on("click", "> li", function(e) {
+    client.switch($(this).attr("roomname"));
     // ul.clear();
-    rlist.open = !rlist.open;
+    rlist.open = false;
   });
   client.on('ls', ls => {
-    if (ls.c) $("#roomlist").empty();
+    if (ls.c) $("#roomlist").find("*").not(".mdc-list-item--activated").remove();
     for (const key in ls.u) {
       if (!ls.u.hasOwnProperty(key)) continue;
       const room = ls.u[key];
       let info = $(`#roomlist > li[roomname="${room._id}"]`);
       if (info.length == 0) {
-        info = $(`<li class="mdc-list-item"><div>${room._id}</div><span class="mdc-list-item__start-detail">${room.count}</span></li>`);
-        info.attr("roomname", room._id);
-        $("#roomlist").append(info);
+        if (room._id == client.channel._id) {
+          info = $("#roomlist > .mdc-list-item--activated");
+          info.html(`<div>${room._id}</div><span class="mdc-list-item__start-detail">${room.count}</span>`);
+          info.attr("roomname", room._id);
+        } else {
+          info = $(`<li class="mdc-list-item"><div>${room._id}</div><span class="mdc-list-item__start-detail">${room.count}</span></li>`);
+          info.attr("roomname", room._id);
+          $("#roomlist").append(info);
+        }
       }
       if (room.count == 0) info.remove();
       const rname = info.children().eq(0);
@@ -107,6 +120,10 @@ window.onload = () => {
       if (room.settings.crownsolo) info.attr("solo", "");
       else info.removeAttr("solo");
     }
+    // if (rlistupdate) {
+    //   rlist.open = !rlist.open;
+    //   rlistupdate = false;
+    // }
   });
 
 

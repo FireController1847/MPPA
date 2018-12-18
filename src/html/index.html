@@ -17,11 +17,14 @@
         </section>
       </div>
     </header>
-    <aside class="mdc-persistent-drawer mdc-typography">
-      <nav class="mdc-persistent-drawer__drawer" id="sidebar">
-        <ul class="mdc-list" id="roomlist"></ul>
-      </nav>
+    <aside class="mdc-drawer mdc-drawer--modal mdc-typography">
+      <div class="mdc-drawer__content" id="sidebar">
+        <nav class="mdc-list" id="roomlist">
+            <li class="mdc-list-item mdc-list-item--activated"><div>${room._id}</div><span class="mdc-list-item__start-detail">${room.count}</span></li>
+        </nav>
+      </div>
     </aside>
+    <div class="mdc-drawer-scrim"></div>
     <div class="content mdc-typography">
       <div id="users">
         <ul></ul>

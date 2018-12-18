@@ -18,14 +18,14 @@
   },
   "homepage": "https://github.com/FireController1847/MPPA#readme",
   "devDependencies": {
-    "electron": "^1.7.9",
-    "electron-rebuild": "^1.6.0",
-    "jquery": "^3.2.1"
+    "electron": "^3.0.13",
+    "electron-rebuild": "^1.8.2",
+    "jquery": "^3.3.1"
   },
   "dependencies": {
-    "@material/drawer": "^0.27.0",
-    "https-proxy-agent": "^2.1.1",
+    "@material/drawer": "^0.42.0",
+    "https-proxy-agent": "^2.2.1",
     "jquery-easing": "0.0.1",
-    "ws": "^3.3.2"
+    "ws": "^6.1.2"
   }
 }
