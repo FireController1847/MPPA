@@ -21,7 +21,7 @@ html, body {
 .mdc-drawer {
   /* position: absolute; */
   left: 0;
-  top: 0;
+  top: 64px;
   bottom: 128px;
   z-index: 100;
 }
@@ -57,6 +57,7 @@ html, body {
   margin-right: 0px;
   width: 30px;
   height: 30px;
+  line-height: 30px;
   background-color: grey;
   border-radius: 50%;
   color: white;
